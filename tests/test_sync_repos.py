@@ -82,7 +82,7 @@ def test_sync_repos(tmpdir: LocalPath, test_input: dict, expected: dict) -> None
 
 @patch("sync_with_pdm.swp.PYPROJECT_FILE", PATH / "pyproject_test.toml")
 def test_no_change(tmpdir: LocalPath) -> None:
-    """Test a run without updates"""
+    """Test a run without updates in .pre-commit-yaml"""
     config_file = tmpdir.join(".pre-commit-yaml")
     config_file.write(CONFIG_CONTENT)
     retv = swp.sync_repos(
