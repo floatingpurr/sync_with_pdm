@@ -50,7 +50,7 @@ PATH = pathlib.Path(__file__).parent.resolve()
             },
             # fmt: on
         ),
-        # sync dev dependencies, skipping `black` and  `flake8`
+        # sync dev dependencies, skipping `black` and  `flake8` (not dev)
         (
             {"all": False, "skip": ["black", "flake8"]},
             # fmt: off
