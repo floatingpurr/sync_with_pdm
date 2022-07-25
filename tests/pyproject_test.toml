@@ -1,0 +1,80 @@
+[project]
+authors = [
+  {name = "Andrea", email = "floatingpurr@users.noreply.github.com"},
+]
+dependencies = [
+  "PyYAML>=6.0",
+  "tomlkit>=0.11.1",
+  "packaging>=21.3",
+  "black>=22.6.0",
+]
+description = "Sync .pre-commit-config.yaml repos starting from pdm.lock"
+dynamic = ["version"]
+license = {text = "MIT"}
+name = "sync_with_pdm"
+requires-python = ">=3.7"
+
+[project.scripts]
+swp = "sync_with_pdm.swp:main"
+
+[project.optional-dependencies]
+ipython = [
+  "ipython>=7.34.0",
+  "flake8>=4.0.1",
+]
+
+[tool.pdm]
+version = {source = "file", path = "sync_with_pdm/__init__.py"}
+
+[tool.pdm.dev-dependencies]
+lint = [
+  "mypy>=0.971",
+]
+test = [
+  "pytest>=7.1.2",
+]
+types = [
+  "types-PyYAML>=6.0.10",
+]
+workflow = [
+  "pre-commit>=2.20.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "-svv"
+testpaths = ["tests"]
+
+[tool.black]
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | tests/.*/setup.py
+)/
+'''
+include = '\.pyi?$'
+line-length = 88
+
+[tool.mypy]
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+explicit_package_bases = true
+files = ["**/*.py"]
+namespace_packages = true
+show_error_codes = true
+
+[tool.isort]
+profile = "black"
+src_paths = ["sync_with_pdm", "tests"]
+
+[build-system]
+build-backend = "pdm.pep517.api"
+requires = ["pdm-pep517>=1.0.0"]

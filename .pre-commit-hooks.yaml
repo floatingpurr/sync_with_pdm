@@ -1,0 +1,6 @@
+- id: sync_with_pdm
+  name: Sync with pdm
+  description: Automatically sync pre-commit repos with package versions in pdm.lock
+  entry: swp
+  language: python
+  files: pdm.lock
