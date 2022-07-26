@@ -1,6 +1,6 @@
 # Sync with PDM
 
-[![Tests](https://github.com/floatingpurr/sync_with_pdm/actions/workflows/tests.yml/badge.svg)](https://github.com/floatingpurr/sync_with_pdm/actions/workflows/tests.yml)
+[![CI](https://github.com/floatingpurr/sync_with_pdm/actions/workflows/ci.yml/badge.svg)](https://github.com/floatingpurr/sync_with_pdm/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/floatingpurr/sync_with_pdm/branch/main/graph/badge.svg?token=COBYtxAODG)](https://codecov.io/gh/floatingpurr/sync_with_pdm)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/floatingpurr/sync_with_pdm/main.svg)](https://results.pre-commit.ci/latest/github/floatingpurr/sync_with_pdm/main)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
