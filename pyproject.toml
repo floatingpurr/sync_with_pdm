@@ -29,8 +29,8 @@ format = [
   "black>=22.6.0",
 ]
 lint = [
-  "flake8>=4.0.1",
-  "mypy>=0.971",
+    "flake8==5.0.4",
+    "mypy>=0.971",
 ]
 test = [
     "pytest>=7.1.2",
