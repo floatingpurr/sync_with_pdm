@@ -3,9 +3,9 @@ authors = [
   {name = "Andrea", email = "floatingpurr@users.noreply.github.com"},
 ]
 dependencies = [
-    "PyYAML>=6.0",
-    "tomlkit>=0.11.1",
-    "packaging>=21.3",
+  "PyYAML>=6.0",
+  "tomlkit>=0.11.1",
+  "packaging>=21.3",
 ]
 description = "Sync .pre-commit-config.yaml repos starting from pdm.lock"
 dynamic = ["version"]
@@ -18,7 +18,7 @@ swp = "sync_with_pdm.swp:main"
 
 [project.optional-dependencies]
 ipython = [
-    "ipython>=7.34.0",
+  "ipython>=7.34.0",
 ]
 
 [tool.pdm]
@@ -26,15 +26,15 @@ version = {source = "file", path = "sync_with_pdm/__init__.py"}
 
 [tool.pdm.dev-dependencies]
 format = [
-  "black>=22.6.0",
+  "black>=22.8.0",
 ]
 lint = [
-    "flake8==5.0.4",
-    "mypy>=0.971",
+  "flake8==5.0.4",
+  "mypy>=0.971",
 ]
 test = [
-    "pytest>=7.1.2",
-    "pytest-cov>=3.0.0",
+  "pytest>=7.1.2",
+  "pytest-cov>=3.0.0",
 ]
 types = [
   "types-PyYAML>=6.0.10",
