@@ -32,6 +32,7 @@ lint = [
 ]
 test = [
   "pytest>=7.1.2",
+  "foobarbaz>=1.0.1",
 ]
 types = [
   "types-PyYAML>=6.0.10",

@@ -1,7 +1,8 @@
 import argparse
+import json
 import re
 from string import Template
-from typing import List, Optional, Sequence, Set
+from typing import Dict, List, Optional, Sequence, Set
 
 import yaml
 from packaging.requirements import Requirement
@@ -32,6 +33,7 @@ class PdmItems(object):
         self,
         pdm_list: AoT,
         package_filter: Set[str] = set(),
+        db: Dict[str, Dict[str, str]] = DEPENDENCY_MAPPING,
     ) -> None:
         """Create a PdmItems collection
 
@@ -42,6 +44,7 @@ class PdmItems(object):
                                             Defaults to False.
             skip (Optional[list], optional): A list of packages to skip. Such packages won't be synchronized in .pre-commit-config.yaml.
                                              Defaults to [].
+            db (Dict[str, Dict[str, str]], optional): A package-repo mapping. Defaults to DEPENDENCY_MAPPING.
         """
 
         self._pdm_list = []
@@ -51,7 +54,7 @@ class PdmItems(object):
             if package["name"] not in package_filter:
                 continue
 
-            dependency_mapping = DEPENDENCY_MAPPING.get(package["name"], None)
+            dependency_mapping = db.get(package["name"], None)
 
             if dependency_mapping:
                 name = package["name"]
@@ -76,7 +79,11 @@ class PdmItems(object):
 
 
 def sync_repos(
-    filename: str, all: bool = False, skip: List[str] = [], config: str = YAML_FILE
+    filename: str,
+    all: bool = False,
+    skip: List[str] = [],
+    config: str = YAML_FILE,
+    db: Dict[str, Dict[str, str]] = DEPENDENCY_MAPPING,
 ) -> int:
 
     retv = 0
@@ -104,7 +111,7 @@ def sync_repos(
 
     package_filter = source_packages - set(skip)
     assert isinstance(lock_content["package"], AoT)
-    pdm_items = PdmItems(lock_content["package"], package_filter)
+    pdm_items = PdmItems(lock_content["package"], package_filter, db)
 
     with open(config, "r") as stream:
         pre_commit_data = yaml.safe_load(stream)
@@ -161,10 +168,20 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         default=YAML_FILE,
         help="Path to the .pre-commit-config.yaml file",
     )
+    parser.add_argument(
+        "--db",
+        type=str,
+        help="Path to a custom package list (json)",
+    )
     args = parser.parse_args(argv)
+    if args.db is None:
+        mapping = DEPENDENCY_MAPPING
+    else:
+        with open(args.db, "r") as f:
+            mapping = json.load(f)
     retv = 0
     for filename in args.filenames:
-        retv |= sync_repos(filename, args.all, args.skip, args.config)
+        retv |= sync_repos(filename, args.all, args.skip, args.config, mapping)
     return retv
 
 

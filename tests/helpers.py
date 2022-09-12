@@ -34,7 +34,19 @@ CONFIG_CONTENT = (
     "    hooks:\n"
     "      - id: isort\n"
     "        args: [--filter-files]\n"
+    "  - repo: https://example.org/fakepackages/foobarbaz\n"
+    "    rev: 1.0.0\n"
+    "    hooks:\n"
+    "      - id: foobarbaz\n"
 )
+
+
+CUSTOM_DEPENDENCY_MAPPING = {
+    "foobarbaz": {
+        "repo": "https://example.org/fakepackages/foobarbaz",
+        "rev": "${rev}",
+    },
+}
 
 
 def get_repo_version(filename: str, repo: str) -> Optional[str]:

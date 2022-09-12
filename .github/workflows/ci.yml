@@ -60,6 +60,6 @@ jobs:
         uses: codecov/codecov-action@v2
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10'
         with:
-          name: sync with poetry # optional
+          name: sync with pdm # optional
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)

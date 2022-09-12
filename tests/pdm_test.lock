@@ -384,6 +384,12 @@ version = "3.8.1"
 requires_python = ">=3.7"
 summary = "Backport of pathlib-compatible object wrapper for zip files"
 
+[[package]]
+name = "foobarbaz"
+version = "1.0.1"
+requires_python = ">=3.7"
+summary = "A dummy package"
+
 [metadata]
 lock_version = "4.0"
 content_hash = "sha256:4de877c33567b0651d2375ae0108917b09a2f9b035c9e3b3e8909917d8561839"
